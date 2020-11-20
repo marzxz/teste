@@ -1,0 +1,38 @@
+﻿@model teste.Models.Balanco
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Cadastrar Balanço</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="valordebito" class="control-label">Valor Débito</label>
+                <input asp-for="valordebito" class="form-control" />
+                <span asp-validation-for="valordebito" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="valorcredito" class="control-label">Valor Credito</label>
+                <input asp-for="valorcredito" class="form-control" />
+                <span asp-validation-for="valorcredito" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <input type="submit" value="Salvar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Voltar</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

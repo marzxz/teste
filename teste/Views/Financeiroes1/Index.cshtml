@@ -1,0 +1,74 @@
+﻿@model IEnumerable<teste.Models.Financeiro>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<p>
+    <a asp-action="Create">Cadastrar Novo</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+               Data e Hora
+            </th>
+            <th>
+              Valor
+            </th>
+            <th>
+               Tipo
+            </th>
+            <th>
+               Status
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            @if (item.status.ToString() == "Conciliado")
+            {
+                <td>
+                    @Html.DisplayFor(modelItem => item.datahora)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.valor)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tipo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.status)
+                </td>
+
+            }
+            else
+            {
+                <td>
+                    @Html.DisplayFor(modelItem => item.datahora)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.valor)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tipo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.status)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Detalhar</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Deletar</a>
+                </td>
+
+            }
+
+
+        </tr>
+}
+    </tbody>
+</table>

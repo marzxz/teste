@@ -1,0 +1,69 @@
+﻿@model teste.Models.Financeiro
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Financeiro</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="valor" class="control-label">Valor</label>
+                <input asp-for="valor" class="form-control" />
+                <span asp-validation-for="valor" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="exampleFormControlSelect1">Tipo</label>
+                <select class="form-control" id="statusDropDown" onchange="selectTipo(this)">
+                    <option value="" disabled selected>Selecione</option>
+                    <option value="1">Débito</option>
+                    <option value="2">Crédito</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlSelect1">Status</label>
+                <select class="form-control" id="statusDropDown" onchange="selectStatus(this)">
+                    <option value="" disabled selected>Selecione</option>
+                    <option value="1">Conciliado</option>
+                    <option value="2">Não Conciliado</option>
+                </select>
+            </div>
+            <input type="hidden" id="status" name="statusName" />
+            <input type="hidden" id="tipo" name="tipoName" />
+
+            <script type="text/javascript">
+                function selectStatus(statusDropDown) {
+                    var selectedText = statusDropDown.options[statusDropDown.selectedIndex].innerHTML;
+                    document.getElementById("status").value = selectedText;
+                }
+
+                function selectTipo(statusDropDown) {
+                    var selectedText = statusDropDown.options[statusDropDown.selectedIndex].innerHTML;
+                    document.getElementById("tipo").value = selectedText;
+                }
+            </script>
+
+
+
+
+            <div class="form-group">
+                <input type="submit" value="Salvar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Voltar</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

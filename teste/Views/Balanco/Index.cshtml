@@ -1,0 +1,52 @@
+﻿@model IEnumerable<teste.Models.Balanco>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<p>
+    <a asp-action="Create">Cadastrar Novo</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Data
+            </th>
+            <th>
+               Valor Débito
+            </th>
+            <th>
+               Valor Crédito
+            </th>
+            <th>
+                Saldo
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.data)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.valordebito)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.valorcredito)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.saldo)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Exibir</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Deletar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
